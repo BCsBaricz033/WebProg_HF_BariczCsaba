@@ -1,8 +1,7 @@
 <?php
 
-include "Student.php";
-include "Subject.php";
-include "University.php";
+include "Loader.php";
+
 
 $stud1=new Student("Baricz Csaba","xbcs");
 $stud2=new Student("Nagy Károly","xnk");

@@ -1,6 +1,5 @@
 <?php
-require_once "AbstractUniversity.php";
-require_once "HasStudent.php";
+
 class University extends AbstractUniversity
 {
 
