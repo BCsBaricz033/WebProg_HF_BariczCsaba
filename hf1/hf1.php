@@ -7,136 +7,179 @@
 <div>
     <h1>Elso feladat</h1>
     <?php
-    /*Kérdezzük le az aktuális napot (date függvény), majd ennek megfelelően írjunk ki egy üzenetet  magyarul (pld. Ma hétfő.)
-*/
-    setlocale(LC_TIME, 'hu_HU.UTF-8');
-    $napok = array('vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat');
-    $aktualisNap = $napok[date('w')];
-    echo 'Ma ' . $aktualisNap . ' van.';
+
+    $lista=([5, '5', '05', 12.3, '16.7', 'five', 'true', 0xDECAFBAD, '10e200']);
+    foreach ($lista as $item){
+        if(is_numeric($item)){
+            echo "Igen<br>";
+        }else{
+            echo "Nem<br>";
+        }
+    }
     ?>
 </div>
 <div>
     <h1>Második feladat</h1>
     <?php
-    /*Írjál programot, egy számológép elkészítésére (4 alapműveletre)
-*/
-    $ElsoSzam = isset($_POST['x']) ? $_POST['x'] : '';
-    $MasodikSzam = isset($_POST['y']) ? $_POST['y'] : '';
-    $Muvelet = isset($_POST['gombb']) ? $_POST['gombb'] : '';
-    $Eredmeny = '';
-    if (!empty($ElsoSzam) && !empty($MasodikSzam) && !empty($Muvelet)) {
-        switch ($Muvelet) {
-            case "osszeadas":
-                $Eredmeny = $ElsoSzam + $MasodikSzam;
-                break;
-            case "kivonas":
-                $Eredmeny = $ElsoSzam - $MasodikSzam;
-                break;
-            case "szorzas":
-                $Eredmeny = $ElsoSzam * $MasodikSzam;
-                break;
-            case "osztas":
-                $Eredmeny = $ElsoSzam / $MasodikSzam;
-        }
+    $masodpercek = 3600;
+    if (filter_var($masodpercek, FILTER_VALIDATE_INT) !== false) {
+        $orak = $masodpercek / 3600;
+
+
+        echo "A megadott másodpercek száma: <strong>{$masodpercek}</strong> másodperc.<br>";
+        echo "Ez összesen: <strong>{$orak}</strong> óra.";
+    } else {
+        echo "Hiba: A megadott érték nem egész szám!";
     }
     ?>
 
-    <form action="" method="post" >
-        <label>Első szám</label>
-        <input type="number" name="x"value="<?php echo $ElsoSzam; ?>"></input>
-        <label>Második szám</label>
-        <input type="number" name="y"value="<?php echo $MasodikSzam; ?>"></input>
-        <button name="gombb" value="osszeadas">+</button>
-        <button name="gombb" value="kivonas">-</button>
-        <button name="gombb" value="szorzas">*</button>
-        <button name="gombb" value="osztas">/</button>
 
-        <input readonly="readonly" name="Eredmeny" value="<?php echo $Eredmeny; ?>">
-    </form>
 
 </div>
 <div>
     <h1>Harmadik feladat</h1>
-    <table border="1">
-        <tr>
-            <th></th>
-            <?php
-            //osztotabla
-            for ($x = 1; $x <= 10; $x++) {
-                echo "<th>$x</th>";
-            }
-            ?>
-        </tr>
-        <?php
-        for ($y = 1; $y <= 10; $y++) {
-            echo "<tr>";
-            echo "<th>$y</th>";
+    <?php
 
-            for ($x = 1; $x <= 10; $x++) {
-                $result = $x / $y;
-                echo "<td>$result</td>";
-            }
+    $szam1 = 5;
+    $szam2 = 2;
 
-            echo "</tr>";
-        }
-        ?>
+
+    $osszeadas = $szam1 + $szam2;
+    echo "Összeadás: {$szam1} + {$szam2} = {$osszeadas}<br>";
+
+
+    $kivonas = $szam1 - $szam2;
+    echo "Kivonás: {$szam1} - {$szam2} = {$kivonas}<br>";
+
+
+    $szorzas = $szam1 * $szam2;
+    echo "Szorzás: {$szam1} * {$szam2} = {$szorzas}<br>";
+
+
+    if ($szam2 != 0) {
+        $osztas = $szam1 / $szam2;
+        echo "Osztás: {$szam1} / {$szam2} = {$osztas}<br>";
+    } else {
+        echo "Hiba: Osztás nullával nem lehetséges!<br>";
+    }
+
+
+    $hatvanyozas = pow($szam1, $szam2);
+    echo "Hatványozás: {$szam1} ^ {$szam2} = {$hatvanyozas}<br>";
+    ?>
+
 </div>
 <div>
     <h1>Negyedik feladat</h1>
     <?php
-    //sakktábla rajzoló
     function sakkRajzolo(){
         echo "<table>";
-        for ($x = 1; $x <= 8; $x++) {
+        for ($x = 1; $x <= 3; $x++) {
             echo "<tr>";
-            for ($y = 1; $y <= 8; $y++){
-                if(($y+$x)%2==0){echo "<td style='background-color:black;'>"."valami"."</td>";}
-                else{echo "<td>".""."</td>";}
-
+            for ($y = 1; $y <= 3; $y++){
+                if(($y+$x)%2==0){
+                    echo "<td style='background-color:black;'>"."valami"."</td>";
+                }
+                else{
+                    echo "<td>".""."</td>";
+                }
             }
-            echo "</tr>";}
+            echo "</tr>";
+        }
+        echo "</table>";
     }
-    echo "</table>";
     sakkRajzolo();
     ?>
 </div>
 <div>
-    <h1>ötödik feladat</h1>
-    <form method="post">
-        <label for="word">Adjon meg egy szót:</label>
-        <input type="text" id="word" name="word">
-        <input type="submit" value="Átalakítás">
-    </form>
+    <h1>Ötödik feladat</h1>
+    <?php
+    $szam3 = 10;
+    $szam4 = 5;
+    $muveletiJel = '+';
 
-    <?php // szó átalakító -- !nem saját megoldás
-    function spongecase($input) {
-        $spongecased = '';
-        $toggle = true; // Kezdd nagybetűvel
 
-        for ($i = 0; $i < strlen($input); $i++) {
-            $char = $input[$i];
+    switch ($muveletiJel) {
+        case '+':
+            $eredmeny = $szam3 + $szam4;
+            break;
+        case '-':
+            $eredmeny = $szam3 - $szam4;
+            break;
+        case '*':
+            $eredmeny = $szam3 * $szam4;
+            break;
+        case '/':
 
-            if (ctype_alpha($char)) { // Csak betűket változtatunk
-                if ($toggle) {
-                    $spongecased .= strtoupper($char);
-                } else {
-                    $spongecased .= strtolower($char);
-                }
-                $toggle = !$toggle; // Váltogatás a következő karakterre
+            if ($szam4 != 0) {
+                $eredmeny = $szam3 / $szam4;
             } else {
-                $spongecased .= $char; // Egyéb karaktereket nem változtatjuk
-            }
-        }
+                echo "Hiba: 0-val nem lehet osztani!<br>";
 
-        return $spongecased;
+                break;
+            }
+            break;
+        default:
+            echo "Hiba: Érvénytelen műveleti jel!<br>";
+
+            break;
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $input = isset($_POST["word"]) ? $_POST["word"] : '';
-        $output = spongecase($input);
-        echo "<p>Az átalakított szó: $output</p>";
+
+    if (isset($eredmeny)) {
+        echo "{$szam3} {$muveletiJel} {$szam4}=  {$eredmeny}<br>";
     }
     ?>
+
+
+</div>
+<div>
+    <h1>Hatodik feladat</h1>
+    <?php
+    function meghatarozEvszak($honap) {
+        /*
+        if ($honap >= 3 && $honap <= 5) {
+            return "Tavasz";
+        } elseif ($honap >= 6 && $honap <= 8) {
+            return "Nyár";
+        } elseif ($honap >= 9 && $honap <= 11) {
+            return "Ősz";
+        } else {
+            return "Tél";
+        }
+        */
+        switch($honap){
+            case 3:
+            case 4:
+            case 5:
+                return "Tavasz";
+                break ;
+            case 6:
+            case 7:
+            case 8:
+                return "Nyár";
+                break;
+            case 9:
+            case 10:
+            case 11:
+                return "Ősz";
+                break;
+            case 12:
+            case 1:
+            case 2:
+                return "Tél";
+                break;
+        }
+
+
+
+    }
+
+    $honap = 11;
+    $evszak = meghatarozEvszak($honap);
+    echo " $honap. hónap  $evszak ";
+    ?>
+
 </div>
 
 </body>

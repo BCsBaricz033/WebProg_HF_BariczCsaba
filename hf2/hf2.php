@@ -4,23 +4,37 @@
 </head>
 <body>
 <div>
-    <h2>elso feladat</h2>
+    <h2>Elso feladat</h2>
     <?php
-        $tomb=([5, '5', '05', 12.3, '16.7', 'five', 0xDECAFBAD, '10e200']);
-        foreach ($tomb as $item){
-            echo gettype($item);
-            if(is_numeric($item)){
-                echo "  igen<br>";
-            }else {echo "  nem<br>";}
-    }
+    $szin="blue";
+    $szorzotabla=function ($n) use($szin){
+        echo "<table>";
+        for ($x = 1; $x <= $n; $x++) {
+            echo "<tr>";
+            for ($y = 1; $y <= $n; $y++) {
+                if($x==$y){
+                    echo"<td style='background-color: $szin'>";
+                }else{
+                    echo"<td>";
+                }
+
+                echo $x*$y;
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    };
+    $szorzotabla(10);
+
 
     ?>
-    <h2>masodik feladat</h2>
+    <h2>Második feladat</h2>
     <?php
     $orszagok = array( " Magyarország "=>" Budapest", " Románia"=>" Bukarest",
         "Belgium"=> "Brussels", "Austria" => "Vienna", "Poland"=>"Warsaw");
     foreach ($orszagok as $orszag=>$ertek){
-        echo $orszag." fovárosa: ".$ertek."<br>";
+        echo $orszag." fovárosa: <span style='color: red'>".$ertek."</span><br>";
     }
     ?>
     <h2>Harmadik feladat</h2>
@@ -33,7 +47,13 @@
     foreach ($napok as $nyelvek=>$nyelv){
         echo $nyelvek.": ";
         foreach ($nyelv as $nap){
-            echo $nap." ";
+            if($nap=="K" || $nap=="Cs"  || $nap=="Szo" || $nap=="Tu" || $nap=="Th"  || $nap=="Sa" || $nap=="Di"  || $nap=="Do" ){
+                echo "<strong>".$nap." </strong>";
+            }
+            else{
+                echo $nap." ";
+            }
+
         }
         echo "<br>";
     }
@@ -51,6 +71,16 @@
             }
         }
     };
+    function atalakitBeture($tomb, $tulajdonsag) {
+        return array_map(function ($elem) use ($tulajdonsag) {
+            if ($tulajdonsag == "nagybetu") {
+                return strtoupper($elem);
+            } else {
+                return strtolower($elem);
+            }
+        }, $tomb);
+    }
+
     $szinek = array('A' => 'Kek', 'B' => 'Zold', 'c' => 'Piros');
     atalakit($szinek,"kisbetu");
     echo"kisbetu"."<br>";
@@ -59,6 +89,19 @@
     atalakit($szinek,"nagybetu");
     echo"<br>nagybetu"."<br>";
     var_dump($szinek);
+    echo"<br>nagybetu"."<br>";
+    var_dump(  atalakitBeture($szinek, "nagybetu"));
+
+    echo"<br>kisbetu"."<br>";
+
+    var_dump( atalakitBeture($szinek, "kisbetu"));
+
     ?>
 </div>
+
 </body>
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+</style>
